@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Repairing Form - E-Waste Management</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background-color: #f0f2f5;
+            }
+
+            header {
+                background: linear-gradient(135deg, #002a54 0%, #005aa7 100%);
+                color: white;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                margin: 10px 0;
+            }
+
+            nav {
+                background-color: rgba(0, 42, 84, 0.9);
+                padding: 1rem;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: #005aa7;
+                transform: translateY(-2px);
+            }
+
+            .welcome {
+                text-align: center;
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .welcome h2 {
+                display: inline-block;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                font-size: 2.5rem;
+                border-right: 3px solid #002a54;
+                animation: typing 3s steps(30) forwards, cursor 0.5s step-end infinite alternate;
+                color: #002a54;
+            }
+
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 500px }
+            }
+
+            @keyframes cursor {
+                50% { border-color: transparent }
+            }
+
+            .bold-text {
+                color: #005aa7;
+                text-shadow: 1px 1px 2px rgba(0, 90, 167, 0.3);
+            }
+
+            #repairing-form {
+                max-width: 800px;
+                margin: 0 auto 3rem;
+                padding: 2rem;
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            #repairing-form h2 {
+                color: #002a54;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                font-size: 1.8rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #002a54;
+                font-weight: bold;
+            }
+
+            input[type="text"],
+            input[type="file"] {
+                width: 100%;
+                padding: 0.8rem;
+                border: 2px solid #e1e1e1;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            }
+
+            input[type="text"]:focus {
+                border-color: #005aa7;
+                outline: none;
+            }
+
+            .photo-preview {
+                margin: 1.5rem 0;
+            }
+
+            #photo-preview {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 2px solid #e1e1e1;
+            }
+
+            button[type="submit"] {
+                display: block;
+                width: 100%;
+                padding: 1rem;
+                background: linear-gradient(135deg, #002a54 0%, #005aa7 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            button[type="submit"]:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 42, 84, 0.3);
+            }
+
+            footer {
+                background: linear-gradient(135deg, #002a54 0%, #005aa7 100%);
+                color: white;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .footer-content {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .social-links {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 1rem;
+            }
+
+            .social-links a {
+                color: white;
+                font-size: 1.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .social-links a:hover {
+                transform: translateY(-3px);
+            }
+
+            @media (max-width: 768px) {
+                nav ul {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .welcome h2 {
+                    font-size: 2rem;
+                }
+
+                #repairing-form {
+                    margin: 1rem;
+                    padding: 1rem;
+                }
+            }
+
+            .map-section {
+                max-width: 1200px;
+                margin: 2rem auto;
+                padding: 2rem;
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .map-section h2 {
+                color: #002a54;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                font-size: 1.8rem;
+            }
+
+            .map-container {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+
+            #map {
+                height: 500px;
+                border-radius: 10px;
+                border: 2px solid #e1e1e1;
+            }
+
+            .shops-list {
+                padding: 1rem;
+                background-color: #f8f9fa;
+                border-radius: 10px;
+                max-height: 500px;
+                overflow-y: auto;
+            }
+
+            .shops-list h3 {
+                color: #002a54;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #e1e1e1;
+            }
+
+            .shop-card {
+                background-color: white;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .shop-card h4 {
+                color: #002a54;
+                margin-bottom: 0.5rem;
+            }
+
+            .shop-card p {
+                color: #666;
+                margin-bottom: 0.5rem;
+            }
+
+            .shop-card .distance {
+                color: #005aa7;
+                font-weight: bold;
+            }
+
+            .contact-btn {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: linear-gradient(135deg, #002a54 0%, #005aa7 100%);
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .contact-btn:hover {
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+                .map-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* Add new styles */
+            select {
+                width: 100%;
+                padding: 0.8rem;
+                border: 2px solid #e1e1e1;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+                margin-bottom: 1rem;
+            }
+
+            select:focus {
+                border-color: #005aa7;
+                outline: none;
+            }
+
+            .controls-container {
+                margin-bottom: 1.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .control-btn {
+                padding: 0.8rem 1.5rem;
+                background: linear-gradient(135deg, #002a54 0%, #005aa7 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .control-btn:hover {
+                transform: translateY(-2px);
+            }
+
+            .filters {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .filter-select {
+                min-width: 150px;
+                margin-bottom: 0;
+            }
+
+            .shop-card {
+                position: relative;
+            }
+
+            .shop-rating {
+                color: #ffd700;
+                margin-bottom: 0.5rem;
+            }
+
+            .shop-status {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: bold;
+            }
+
+            .status-open {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .status-closed {
+                background-color: #f44336;
+                color: white;
+            }
+
+            .price-range {
+                color: #4CAF50;
+                font-weight: bold;
+            }
+
+            .shop-hours {
+                font-size: 0.9rem;
+                color: #666;
+                margin-top: 0.5rem;
+            }
+
+            @media (max-width: 768px) {
+                .controls-container {
+                    flex-direction: column;
+                }
+
+                .filters {
+                    width: 100%;
+                }
+
+                .filter-select {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>E-Waste Management</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Repairing Form.html">Repair</a></li>
+                <li><a href="Sell.html">Sell</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <div class="welcome">
+            <h2><span class="bold-text">Repair your product</span></h2>
+        </div>
+
+        <form id="repairing-form">
+            <h2>Repair Your Product</h2>
+            
+            <div class="form-group">
+                <label for="product-information">Product Information:</label>
+                <input type="text" id="product-information" name="product-information" placeholder="Enter product details" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-location">Location of Product:</label>
+                <input type="text" id="product-location" name="product-location" placeholder="Enter product location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="repairing-reason">Repairing Reason:</label>
+                <input type="text" id="repairing-reason" name="repairing-reason" placeholder="Enter reason for repair" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product-photo">Product Photo:</label>
+                <input type="file" id="product-photo" name="product-photo" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="repair-type">Type of Repair:</label>
+                <select id="repair-type" name="repair-type" required>
+                    <option value="">Select repair type</option>
+                    <option value="mobile">Mobile Phone</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="desktop">Desktop</option>
+                    <option value="tablet">Tablet</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="urgency">Urgency Level:</label>
+                <select id="urgency" name="urgency" required>
+                    <option value="">Select urgency</option>
+                    <option value="high">High (Within 24 hours)</option>
+                    <option value="medium">Medium (Within 3 days)</option>
+                    <option value="low">Low (Within a week)</option>
+                </select>
+            </div>
+
+            <div class="photo-preview">
+                <img src="" alt="Product Photo Preview" id="photo-preview">
+            </div>
+
+            <button type="submit">Submit Repair Request</button>
+        </form>
+
+        <!-- Map and Nearby Shops Section -->
+        <div class="map-section">
+            <h2>Nearby Repair Shops</h2>
+            
+            <!-- Location and Filter Controls -->
+            <div class="controls-container">
+                <button id="get-location" class="control-btn">
+                    <i class="fas fa-location-arrow"></i> Use My Location
+                </button>
+                <div class="filters">
+                    <select id="rating-filter" class="filter-select">
+                        <option value="">All Ratings</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="3">3+ Stars</option>
+                        <option value="2">2+ Stars</option>
+                    </select>
+                    <select id="price-filter" class="filter-select">
+                        <option value="">All Prices</option>
+                        <option value="low">Low Cost</option>
+                        <option value="medium">Medium Cost</option>
+                        <option value="high">High Cost</option>
+                    </select>
+                    <select id="availability-filter" class="filter-select">
+                        <option value="">All Shops</option>
+                        <option value="open">Open Now</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="shops-list">
+                    <h3>Available Shops</h3>
+                    <div id="shops-container">
+                        <!-- Shops will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 E-Waste Management. All rights reserved.</p>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+        <!-- Add Google Maps API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+        <script>
+            // Image preview code
+            document.getElementById('product-photo').addEventListener('change', function(e) {
+                const preview = document.getElementById('photo-preview');
+                const file = e.target.files[0];
+                const reader = new FileReader();
+
+                reader.onloadend = function() {
+                    preview.src = reader.result;
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = "";
+                }
+            });
+
+            // Map initialization
+            let map;
+            let service;
+            let infowindow;
+
+            function initMap() {
+                // Default location (you can change this to user's location)
+                const defaultLocation = { lat: 19.0760, lng: 72.8777 }; // Mumbai coordinates
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: defaultLocation,
+                    zoom: 13
+                });
+
+                infowindow = new google.maps.InfoWindow();
+                service = new google.maps.places.PlacesService(map);
+
+                // Search for repair shops
+                const request = {
+                    location: defaultLocation,
+                    radius: '5000',
+                    type: ['repair']
+                };
+
+                service.nearbySearch(request, callback);
+            }
+
+            function callback(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    const shopsContainer = document.getElementById('shops-container');
+                    shopsContainer.innerHTML = '';
+
+                    for (let i = 0; i < results.length; i++) {
+                        const place = results[i];
+                        createMarker(place);
+                        addShopToList(place);
+                    }
+                }
+            }
+
+            function createMarker(place) {
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(place.name);
+                    infowindow.open(map, this);
+                });
+            }
+
+            function addShopToList(place) {
+                const shopsContainer = document.getElementById('shops-container');
+                const distance = calculateDistance(place.geometry.location);
+                
+                const shopCard = document.createElement('div');
+                shopCard.className = 'shop-card';
+                shopCard.innerHTML = `
+                    <h4>${place.name}</h4>
+                    <p>${place.vicinity}</p>
+                    <p class="distance">Distance: ${distance} km</p>
+                    <a href="tel:${place.formatted_phone_number}" class="contact-btn">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                `;
+                
+                shopsContainer.appendChild(shopCard);
+            }
+
+            function calculateDistance(shopLocation) {
+                // This is a simplified distance calculation
+                // In a real application, you would use the Google Maps Distance Matrix API
+                const defaultLocation = { lat: 19.0760, lng: 72.8777 };
+                const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(defaultLocation),
+                    shopLocation
+                );
+                return (distance / 1000).toFixed(2);
+            }
+
+            // Initialize map when the page loads
+            window.onload = initMap;
+
+            let userLocation = null;
+            let markers = [];
+            let currentShops = [];
+
+            // Get user's location
+            document.getElementById('get-location').addEventListener('click', function() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            userLocation = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            map.setCenter(userLocation);
+                            searchNearbyShops(userLocation);
+                        },
+                        function(error) {
+                            alert('Error getting location: ' + error.message);
+                        }
+                    );
+                } else {
+                    alert('Geolocation is not supported by your browser');
+                }
+            });
+
+            // Filter change handlers
+            document.getElementById('rating-filter').addEventListener('change', filterShops);
+            document.getElementById('price-filter').addEventListener('change', filterShops);
+            document.getElementById('availability-filter').addEventListener('change', filterShops);
+
+            function filterShops() {
+                const ratingFilter = document.getElementById('rating-filter').value;
+                const priceFilter = document.getElementById('price-filter').value;
+                const availabilityFilter = document.getElementById('availability-filter').value;
+
+                const shopsContainer = document.getElementById('shops-container');
+                shopsContainer.innerHTML = '';
+
+                currentShops.forEach(shop => {
+                    if (matchesFilters(shop, ratingFilter, priceFilter, availabilityFilter)) {
+                        addShopToList(shop);
+                    }
+                });
+            }
+
+            function matchesFilters(shop, rating, price, availability) {
+                if (rating && shop.rating < parseFloat(rating)) return false;
+                if (price && shop.priceRange !== price) return false;
+                if (availability && shop.isOpen !== (availability === 'open')) return false;
+                return true;
+            }
+
+            function searchNearbyShops(location) {
+                // Clear existing markers
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+
+                const request = {
+                    location: location,
+                    radius: '5000',
+                    type: ['repair']
+                };
+
+                service.nearbySearch(request, callback);
+            }
+
+            function callback(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    const shopsContainer = document.getElementById('shops-container');
+                    shopsContainer.innerHTML = '';
+                    currentShops = [];
+
+                    results.forEach(place => {
+                        // Add mock data for demonstration
+                        place.rating = Math.random() * 2 + 3; // Random rating between 3-5
+                        place.priceRange = ['low', 'medium', 'high'][Math.floor(Math.random() * 3)];
+                        place.isOpen = Math.random() > 0.5;
+                        place.hours = '9:00 AM - 6:00 PM';
+
+                        currentShops.push(place);
+                        createMarker(place);
+                        addShopToList(place);
+                    });
+                }
+            }
+
+            function createMarker(place) {
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
+                });
+
+                markers.push(marker);
+
+                const content = `
+                    <div class="info-window">
+                        <h4>${place.name}</h4>
+                        <p>${place.vicinity}</p>
+                        <div class="shop-rating">
+                            ${getRatingStars(place.rating)}
+                        </div>
+                        <p>Price Range: <span class="price-range">${place.priceRange}</span></p>
+                        <p>Status: <span class="status-${place.isOpen ? 'open' : 'closed'}">${place.isOpen ? 'Open' : 'Closed'}</span></p>
+                    </div>
+                `;
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(content);
+                    infowindow.open(map, this);
+                });
+            }
+
+            function getRatingStars(rating) {
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 !== 0;
+                let stars = '';
+                
+                for (let i = 0; i < fullStars; i++) {
+                    stars += '<i class="fas fa-star"></i>';
+                }
+                if (hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                }
+                const emptyStars = 5 - Math.ceil(rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    stars += '<i class="far fa-star"></i>';
+                }
+                return stars;
+            }
+
+            function addShopToList(place) {
+                const shopsContainer = document.getElementById('shops-container');
+                const distance = calculateDistance(place.geometry.location);
+                
+                const shopCard = document.createElement('div');
+                shopCard.className = 'shop-card';
+                shopCard.innerHTML = `
+                    <h4>${place.name}</h4>
+                    <p>${place.vicinity}</p>
+                    <div class="shop-rating">
+                        ${getRatingStars(place.rating)}
+                    </div>
+                    <p class="distance">Distance: ${distance} km</p>
+                    <p class="price-range">Price Range: ${place.priceRange}</p>
+                    <p class="shop-hours">Hours: ${place.hours}</p>
+                    <span class="shop-status status-${place.isOpen ? 'open' : 'closed'}">
+                        ${place.isOpen ? 'Open Now' : 'Closed'}
+                    </span>
+                    <a href="tel:${place.formatted_phone_number}" class="contact-btn">
+                        <i class="fas fa-phone"></i> Contact
+                    </a>
+                `;
+                
+                shopsContainer.appendChild(shopCard);
+            }
+
+            // ... existing calculateDistance function ...
+
+            // Initialize map when the page loads
+            window.onload = initMap;
+        </script>
+    </body>
+</html>
